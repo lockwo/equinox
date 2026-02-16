@@ -84,6 +84,9 @@ plugins:
             - jax.ShapeDtypeStruct
             - jax.extend.core.ClosedJaxpr
             - jax.Device
+            - jax.sharding.Mesh
+            - jax.sharding.AbstractMesh
+            - jax.sharding.PartitionSpec
             - jax.sharding.Sharding
     - mkdocstrings:
         handlers:
