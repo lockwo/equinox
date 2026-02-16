@@ -30,9 +30,7 @@ def test_basic_sharding():
     num_devices = len(jax.devices())
 
     @eqx.filter_jit
-    @eqx.filter_shard_map(
-        mesh=mesh, in_specs=(P(), P("batch")), out_specs=P("batch")
-    )
+    @eqx.filter_shard_map(mesh=mesh, in_specs=(P(), P("batch")), out_specs=P("batch"))
     def f(w, x):
         return x * w
 
@@ -59,9 +57,7 @@ def test_module_input():
     x = jnp.ones((num_devices * 2, 3))
 
     @eqx.filter_jit
-    @eqx.filter_shard_map(
-        mesh=mesh, in_specs=(P(), P("batch")), out_specs=P("batch")
-    )
+    @eqx.filter_shard_map(mesh=mesh, in_specs=(P(), P("batch")), out_specs=P("batch"))
     def f(model, x):
         return jax.vmap(model)(x)
 
@@ -75,9 +71,7 @@ def test_non_array_output():
     num_devices = len(jax.devices())
 
     @eqx.filter_jit
-    @eqx.filter_shard_map(
-        mesh=mesh, in_specs=P("batch"), out_specs=(P("batch"), P())
-    )
+    @eqx.filter_shard_map(mesh=mesh, in_specs=P("batch"), out_specs=(P("batch"), P()))
     def f(x):
         return x + 1.0, "metadata"
 
@@ -108,9 +102,7 @@ def test_grad_inside_shard_map():
     x = jnp.ones((num_devices * 2, 2))
 
     @eqx.filter_jit
-    @eqx.filter_shard_map(
-        mesh=mesh, in_specs=(P(), P("batch")), out_specs=(P(), P())
-    )
+    @eqx.filter_shard_map(mesh=mesh, in_specs=(P(), P("batch")), out_specs=(P(), P()))
     def loss_and_grad(model, x):
         @eqx.filter_value_and_grad
         def loss_fn(model, x):

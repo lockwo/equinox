@@ -39,7 +39,8 @@ class _ShardMapWrapper(Module):
             _dynamic_out, _static_out = partition(_out, is_array)
             return _dynamic_out, Static(_static_out)
 
-        dynamic_out, static_out = jax.shard_map(
+        # for type ignore see: https://github.com/jax-ml/jax/issues/35101
+        dynamic_out, static_out = jax.shard_map(  # pyright: ignore
             _fun_wrapper,
             mesh=self._mesh,
             in_specs=(self._in_specs,),
