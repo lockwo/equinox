@@ -51,6 +51,7 @@ from ._serialisation import (
     tree_deserialise_leaves as tree_deserialise_leaves,
     tree_serialise_leaves as tree_serialise_leaves,
 )
+from ._shard_map import filter_shard_map as filter_shard_map
 from ._sharding import filter_shard as filter_shard
 from ._tree import (
     tree_at as tree_at,

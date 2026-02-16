@@ -81,6 +81,10 @@ Most users find that this is a simpler API when working with complicated PyTrees
 
 ::: equinox.filter_pmap
 
+---
+
+::: equinox.filter_shard_map
+
 ## Callbacks
 
 ::: equinox.filter_pure_callback
